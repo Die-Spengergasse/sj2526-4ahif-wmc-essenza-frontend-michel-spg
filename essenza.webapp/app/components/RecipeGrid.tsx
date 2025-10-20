@@ -1,4 +1,4 @@
-import { Recipe } from "../_types/Recipe";
+import { Recipe } from "../types/Recipe";
 import Link from "next/link";
 
 interface RecipeListProps {
