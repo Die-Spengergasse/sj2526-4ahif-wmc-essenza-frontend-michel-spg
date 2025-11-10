@@ -73,11 +73,11 @@ export default async function RecipeDetailPage({
           {/* Image */}
           <div className="overflow-hidden rounded-xl border border-gray-200">
             {/* You can swap <img> for next/image if you configured remotePatterns */}
-            {/* <img
+            <img
               src={`http://localhost:4000/images/${recipe.image}`}
               alt={recipe.title}
               className="h-full w-full object-cover"
-            /> */}
+            />
           </div>
 
           {/* Meta + times + rating */}

@@ -15,11 +15,11 @@ export default function RecipeGrid({ recipes }: RecipeListProps) {
                      border border-gray-200
                      dark:bg-gray-800 dark:border-gray-700"
         >
-          {/* <img
-            src={recipe.image}
-            alt={recipe.name}
+          <img
+            src={`http://localhost:4000/images/${recipe.image}`}
+            alt={recipe.title}
             className="rounded-xl w-full h-48 object-cover mb-4"
-          /> */}
+          />
           <div className="flex-grow">
             <h2 className="text-xl font-bold mb-1 dark:text-white">{recipe.title}</h2>
             <p className="text-sm text-gray-700 dark:text-gray-300">
