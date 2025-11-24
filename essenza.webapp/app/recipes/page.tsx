@@ -47,7 +47,7 @@ export default function Recipes() {
             type="text"
             name="searchTerm"
             id="searchTerm"
-            placeholder="Search by name ..."
+            placeholder="Suche nach Titel ..."
             className="mb-2 w-full p-2 border border-gray-300 rounded-lg 
                      dark:bg-gray-800 dark:border-gray-700 dark:text-white
                      dark:placeholder-gray-400"
@@ -67,7 +67,7 @@ export default function Recipes() {
               <span>Loading recipes...</span>
             </div>
           ) : (
-            `Recipes: ${recipes ? recipes.length : 0}`
+            `Rezepte: ${recipes ? recipes.length : 0}`
           )}
         </div>
 
