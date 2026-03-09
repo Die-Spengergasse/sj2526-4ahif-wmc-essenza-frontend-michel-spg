@@ -285,7 +285,6 @@ export default function AddRecipeForm() {
                 onChange={(e) => setDuration(e.target.value)}
                 placeholder="30"
                 className={`w-full px-4 py-2 bg-white dark:bg-slate-900 border rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition ${inputClass('duration')}`}
-                required
               />
               <FieldError name="duration" />
             </div>
