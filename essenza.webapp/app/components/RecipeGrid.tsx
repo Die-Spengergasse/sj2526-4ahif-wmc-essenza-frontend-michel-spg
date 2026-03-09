@@ -21,20 +21,20 @@ export default function RecipeGrid({ recipes }: RecipeListProps) {
             className="rounded-xl w-full h-48 object-cover mb-4"
           />
           <div className="flex-grow">
-            <h2 className="text-xl font-bold mb-1 dark:text-white">{recipe.title}</h2>
+            <h2 className="text-xl font-bold mb-1 dark:text-white">
+              {recipe.title}
+            </h2>
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              <span className="font-medium">Dauer:</span>{" "}
-              {recipe.duration} min
+              <span className="font-medium">Dauer:</span> {recipe.duration} min
             </p>
           </div>
           <div className="mt-4">
-            <Link href={`/recipes/${recipe.id}`}>
-              <button className="w-full px-4 py-2 bg-emerald-100 text-emerald-900 rounded-lg 
-                                shadow hover:bg-emerald-200 transition
-                                dark:bg-gray-900 dark:text-emerald-400 
-                                dark:hover:bg-gray-700 dark:border-gray-700">
-                Details
-              </button>
+            <Link
+              href={`/recipes/${recipe.id}`}
+              className="block w-full px-4 py-2 text-center bg-emerald-100 text-emerald-900 rounded-lg shadow hover:bg-emerald-200 transition cursor-pointer
+              dark:bg-emerald-900 dark:text-emerald-100 dark:hover:bg-emerald-800"
+            >
+              Details
             </Link>
           </div>
         </div>
