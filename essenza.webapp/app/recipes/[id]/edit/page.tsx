@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { Recipe } from "../../../_types/Recipe";
-import EditRecipeForm from "../../../_components/EditRecipeForm";
+import { Recipe } from "../../../types/Recipe";
+import EditRecipeForm from "../../../components/EditRecipeForm";
 
 async function getRecipe(id: string): Promise<Recipe | null> {
   const res = await fetch(`http://localhost:4000/api/recipes/${id}`, {
