@@ -1,7 +1,20 @@
 'use server';
 
+import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { recipeSchema, formatZodErrors } from '../lib/validation';
+
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:4000';
+
+// Helper: Auth-Header aus HttpOnly Cookie erstellen
+async function getAuthHeaders(): Promise<Record<string, string>> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token')?.value;
+  if (token) {
+    return { Authorization: `Bearer ${token}` };
+  }
+  return {};
+}
 
 export async function createRecipe(formData: FormData) {
   // Validierung der Formulardaten mit Zod
@@ -35,10 +48,24 @@ export async function createRecipe(formData: FormData) {
 
   // Nur bei erfolgreicher Validation an API senden
   try {
+    const authHeaders = await getAuthHeaders();
+
     const response = await fetch('http://localhost:4000/api/recipes', {
       method: 'POST',
+      headers: {
+        ...authHeaders,
+        // KEIN Content-Type bei FormData – fetch setzt es automatisch mit boundary
+      },
       body: formData,
     });
+
+    if (response.status === 401) {
+      return {
+        success: false,
+        error: 'Nicht eingeloggt. Bitte zuerst anmelden.',
+      };
+    }
+
     if (!response.ok) {
       throw new Error('Fehler beim Speichern');
     }
@@ -84,8 +111,13 @@ export async function updateRecipe(id: number, formData: FormData) {
   }
 
   try {
+    const authHeaders = await getAuthHeaders();
+
     const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {
       method: 'PUT',
+      headers: {
+        ...authHeaders,
+      },
       body: formData,
     });
 
@@ -115,8 +147,13 @@ export async function updateRecipe(id: number, formData: FormData) {
 
 export async function deleteRecipe(id: number) {
   try {
+    const authHeaders = await getAuthHeaders();
+
     const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {
       method: 'DELETE',
+      headers: {
+        ...authHeaders,
+      },
     });
 
     if (response.status === 401) {
