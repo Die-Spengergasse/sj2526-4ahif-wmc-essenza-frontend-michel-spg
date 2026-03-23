@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "supergeheimesSecretFuerDenUnterricht123!"
+  process.env.JWT_SECRET || "1234"
 );
 
 // Öffentliche Pfade, die KEINEN Login erfordern
